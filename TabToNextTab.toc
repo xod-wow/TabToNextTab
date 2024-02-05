@@ -3,6 +3,7 @@
 ## Version: @project-version@
 ## Author: Xodiv-Nagrand
 ## Email: mib@post.com
+## X-Curse-Project-ID: 970984
 ## SavedVariables: TabToNextTabDB
 
 TabToNextTab.lua
