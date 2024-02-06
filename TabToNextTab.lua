@@ -134,14 +134,10 @@ local function GetNextTabButton(info, direction)
         numTabs = frame.numTabs
     elseif frame.TabSystem then
         currentTab = frame.TabSystem.selectedTabID
-        tabButtons = {}
-        for _, tab in ipairs(frame.TabSystem.tabs) do
-            table.insert(tabButtons, tab)
-        end
+        tabButtons = frame.TabSystem.tabs
         numTabs = #tabButtons
     elseif info.tabKeys then
         tabButtons = {}
-        local tab = 0
         for i, tabKey in ipairs(info.tabKeys) do
             table.insert(tabButtons, frame[tabKey])
             if frame[tabKey]:GetChecked() then
@@ -232,7 +228,7 @@ function TabToNextTab:SetUpFrame(info)
     local function OnHide()
         tDeleteItem(self.activeFrameInfoList, info)
         if InCombatLockdown() then return end
-        if not next(self.activeFrameInfoList) then
+        if next(self.activeFrameInfoList) == nil then
             self:UnhookTabKeys()
         end
     end
@@ -250,7 +246,7 @@ function TabToNextTab:OnEvent(event, ...)
     elseif event == "PLAYER_REGEN_DISABLED" then
         self:UnhookTabKeys()
     elseif event == "PLAYER_REGEN_ENABLED" then
-        if next(self.activeFrameInfoList) then
+        if next(self.activeFrameInfoList) ~= nil then
             self:HookTabKeys()
         end
     elseif event == "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" then
