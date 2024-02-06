@@ -217,7 +217,7 @@ function TabToNextTab:SetUpFrame(info)
 
     frame:HookScript("OnShow", OnShow)
     frame:HookScript("OnHide", OnHide)
-    if frame:IsShown() then OnShow() end
+    if frame:IsShown() then OnShow(frame) end
         
     info.hooked = true
 end
