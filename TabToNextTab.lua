@@ -118,7 +118,7 @@ local function GetNextTabButton(info, direction)
         numTabs = frame.numTabs
     elseif frame.numTabs and frame.selectedTab then
         currentTab = frame.selectedTab
-        tabButtons = { }
+        tabButtons = {}
         for i = 1, frame.numTabs do
             table.insert(tabButtons, _G[frame:GetName().."Tab"..i])
         end
@@ -166,7 +166,7 @@ local function GetNextTabButton(info, direction)
     end
 
     if currentTab then
-        newTab = currentTab
+        local newTab = currentTab
         while true do
             newTab = rotateN(newTab, numTabs, direction)
             if newTab == currentTab then break end
@@ -240,7 +240,7 @@ function TabToNextTab:SetUpFrame(info)
     frame:HookScript("OnShow", OnShow)
     frame:HookScript("OnHide", OnHide)
     if frame:IsShown() then OnShow(frame) end
-        
+
     info.hooked = true
 end
 
