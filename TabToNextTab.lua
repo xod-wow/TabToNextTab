@@ -263,14 +263,14 @@ function TabToNextTab:Initialize()
     self.activeFrameInfoList = {}
     for _, info in ipairs(AutoTabFrames) do
         local loader = function () self:SetUpFrame(info) end
-        if info.loadFunc then
+        if _G[info.frame] then
+            loader()
+        elseif info.loadFunc then
             if _G[info.loadFunc] then
                 hooksecurefunc(info.loadFunc, loader)
             end
         elseif info.loadAddOn then
             EventUtil.ContinueOnAddOnLoaded(info.loadAddOn, loader)
-        elseif _G[info.frame] then
-            loader()
         end
     end
     self:SetAttribute("type", "click")
