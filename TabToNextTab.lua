@@ -30,6 +30,7 @@ local AutoTabFrames = {
     },
     {
         frame =                 "CollectionsJournal",
+        loadFunc =              "CollectionsJournal_LoadUI",
     },
     {
         frame =                 "CharacterFrame",
@@ -43,10 +44,17 @@ local AutoTabFrames = {
     },
     {
         frame =                 "ClassTalentFrame",
-        loadFunc =              "ClassTalentFrame_LoadUI"
+        loadFunc =              "ClassTalentFrame_LoadUI",
+    },
+    {
+        frame =                 "PlayerTalentFrame",
+        loadFunc =              "TalentFrame_LoadUI",
     },
     {
         frame =                 "PVEFrame",
+    },
+    {
+        frame =                 "PVPParentFrame",
     },
     {
         frame =                 "FriendsFrame",
@@ -139,6 +147,20 @@ local function GetNextTabButton(info, direction)
             if frame[tabKey]:GetChecked() then
                 currentTab = i
             end
+        end
+        numTabs = #tabButtons
+    elseif _G[frame:GetName()..'TabButton1'] then
+        -- Classic
+        tabButtons = {}
+        local i = 1
+        while true do
+            local tabButton =  _G[frame:GetName()..'TabButton'..i]
+            if not tabButton then break end
+            table.insert(tabButtons, tabButton)
+            if not tabButton:IsEnabled() then
+                currentTab = i
+            end
+            i = i + 1
         end
         numTabs = #tabButtons
     end
@@ -246,7 +268,9 @@ function TabToNextTab:Initialize()
     for _, info in ipairs(AutoTabFrames) do
         local loader = function () self:SetUpFrame(info) end
         if info.loadFunc then
-            hooksecurefunc(info.loadFunc, loader)
+            if _G[info.loadFunc] then
+                hooksecurefunc(info.loadFunc, loader)
+            end
         elseif info.loadAddOn then
             EventUtil.ContinueOnAddOnLoaded(info.loadAddOn, loader)
         elseif _G[info.frame] then
@@ -254,7 +278,11 @@ function TabToNextTab:Initialize()
         end
     end
     self:SetAttribute("type", "click")
-    self:RegisterForClicks("AnyUp", "AnyDown")
+    if WOW_PROJECT_ID == 1 then
+        self:RegisterForClicks("AnyUp", "AnyDown")
+    else
+        self:RegisterForClicks("AnyUp")
+    end
     self:SetScript("PreClick", self.PreClick)
     self:SetScript("PostClick", self.PostClick)
     self:RegisterEvent("PLAYER_REGEN_DISABLED")
