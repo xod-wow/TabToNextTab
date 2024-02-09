@@ -29,35 +29,28 @@ local AutoTabFrames = {
         loadFunc =              "AchievementFrame_LoadUI",
     },
     {
-        frame =                 "CollectionsJournal",
-        loadFunc =              "CollectionsJournal_LoadUI",
+        -- Classic
+        frame =                 "AuctionFrame",
+        loadFunc =              "AuctionFrame_LoadUI",
+    },
+    {
+        -- Retail
+        frame =                 "AuctionHouseFrame",
+        loadFunc =              "AuctionHouseFrame_LoadUI",
+    },
+    {
+        frame =                 "BankFrame",
     },
     {
         frame =                 "CharacterFrame",
-    },
-    {
-        frame =                 "InspectFrame",
-        loadFunc =              "InspectFrame_LoadUI",
-    },
-    {
-        frame =                 "SpellBookFrame",
     },
     {
         frame =                 "ClassTalentFrame",
         loadFunc =              "ClassTalentFrame_LoadUI",
     },
     {
-        frame =                 "PlayerTalentFrame",
-        loadFunc =              "TalentFrame_LoadUI",
-    },
-    {
-        frame =                 "PVEFrame",
-    },
-    {
-        frame =                 "PVPParentFrame",
-    },
-    {
-        frame =                 "FriendsFrame",
+        frame =                 "CollectionsJournal",
+        loadFunc =              "CollectionsJournal_LoadUI",
     },
     {
         frame =                 "CommunitiesFrame",
@@ -69,33 +62,46 @@ local AutoTabFrames = {
         loadFunc =              "EncounterJournal_LoadUI",
     },
     {
-        frame =                 "AuctionHouseFrame",
-        loadFunc =              "AuctionHouseFrame_LoadUI",
-    },
-    {
-        frame =                 "MerchantFrame",
-    },
-    {
-        frame =                 "MailFrame",
+        frame =                 "FriendsFrame",
     },
     {
         frame =                 "GuildBankFrame",
         loadInteractionType =   Enum.PlayerInteractionType.GuildBanker,
     },
     {
-        frame =                 "ProfessionsFrame",
-        loadFunc =              "ProfessionsFrame_LoadUI",
-    },
-    {
-        frame =                 "BankFrame",
+        frame =                 "InspectFrame",
+        loadFunc =              "InspectFrame_LoadUI",
     },
     {
         frame =                 "LiteBagBank",
         loadAddOn =             "LiteBag",
     },
     {
+        frame =                 "MailFrame",
+    },
+    {
+        frame =                 "MerchantFrame",
+    },
+    {
+        frame =                 "PlayerTalentFrame",
+        loadFunc =              TalentFrame_LoadUI and "TalentFrame_LoadUI" or "PlayerTalentFrame_LoadUI",
+    },
+    {
         frame =                 "ProfessionsCustomerOrdersFrame",
         loadFunc =              "ProfessionsCustomerOrders_LoadUI",
+    },
+    {
+        frame =                 "ProfessionsFrame",
+        loadFunc =              "ProfessionsFrame_LoadUI",
+    },
+    {
+        frame =                 "PVEFrame",
+    },
+    {
+        frame =                 "PVPParentFrame",
+    },
+    {
+        frame =                 "SpellBookFrame",
     },
 }
 
