@@ -1,4 +1,4 @@
-## Interface: 11501
+## Interface: 11502
 ## Title: TabToNextTab
 ## Version: @project-version@
 ## Author: Xodiv-Nagrand
