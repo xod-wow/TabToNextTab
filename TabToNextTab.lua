@@ -84,7 +84,7 @@ local AutoTabFrames = {
     },
     {
         frame =                 "PlayerTalentFrame",
-        loadFunc =              "PlayerTalentFrame_LoadUI",
+        loadFunc =              TalentFrame_LoadUI and "TalentFrame_LoadUI" or "PlayerTalentFrame_LoadUI",
     },
     {
         frame =                 "PlayerSpellsFrame",
