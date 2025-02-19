@@ -133,7 +133,7 @@ local function GetNextTabButton(info, direction)
     if frame.Tabs and frame.selectedTab then
         currentTab = frame.selectedTab
         tabButtons = frame.Tabs
-        numTabs = frame.numTabs
+        numTabs = frame.numTabs or #frame.Tabs
     elseif frame.numTabs and frame.selectedTab then
         currentTab = frame.selectedTab
         tabButtons = {}
