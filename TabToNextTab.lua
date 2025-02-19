@@ -23,6 +23,14 @@
 
 ----------------------------------------------------------------------------]]--
 
+local function GetClassicAHFrame()
+    if IsUsingLegacyAuctionClient and not IsUsingLegacyAuctionClient() then
+        return "AuctionHouseFrame"
+    else
+        return "AuctionFrame"
+    end
+end
+
 local AutoTabFrames = {
     {
         frame =                 "AchievementFrame",
@@ -30,7 +38,7 @@ local AutoTabFrames = {
     },
     {
         -- Classic
-        frame =                 "AuctionFrame",
+        frame =                 GetClassicAHFrame(),
         loadFunc =              "AuctionFrame_LoadUI",
     },
     {
