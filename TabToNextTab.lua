@@ -31,6 +31,22 @@ local function GetClassicAHFrame()
     end
 end
 
+local function GetAHTabs()
+    local tabs = CopyTable(AuctionHouseFrame.Tabs, true)
+    local currentTab = PanelTemplates_GetSelectedTab(AuctionHouseFrame)
+
+    if Auctionator and Auctionator.State and Auctionator.State.TabFrameRef then
+        for _, tab in ipairs(Auctionator.State.TabFrameRef.Tabs) do
+            table.insert(tabs, tab)
+            if tab.MiddleActive:IsShown() then
+                currentTab = #tabs
+            end
+        end
+    end
+
+    return currentTab, tabs, #tabs
+end
+
 local AutoTabFrames = {
     {
         frame =                 "AchievementFrame",
@@ -45,6 +61,7 @@ local AutoTabFrames = {
         -- Retail
         frame =                 "AuctionHouseFrame",
         loadFunc =              "AuctionHouseFrame_LoadUI",
+        GetTabButtons =         GetAHTabs,
     },
     {
         frame =                 "BankFrame",
@@ -130,7 +147,9 @@ local function GetNextTabButton(info, direction)
 
     -- Try to handle all the different tabbing mechanisms
 
-    if frame.Tabs and frame.selectedTab then
+    if info.GetTabButtons then
+        currentTab, tabButtons, numTabs = info.GetTabButtons()
+    elseif frame.Tabs and frame.selectedTab then
         currentTab = frame.selectedTab
         tabButtons = frame.Tabs
         numTabs = frame.numTabs or #frame.Tabs
