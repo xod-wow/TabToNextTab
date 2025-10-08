@@ -98,10 +98,6 @@ local AutoTabFrames = {
         loadFunc =              "InspectFrame_LoadUI",
     },
     {
-        frame =                 "LiteBagBank",
-        loadAddOn =             "LiteBag",
-    },
-    {
         frame =                 "MailFrame",
     },
     {
