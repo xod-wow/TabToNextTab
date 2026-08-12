@@ -212,7 +212,7 @@ end
 
 function TabToNextTab:GetActiveFrameInfo()
     for i, info in ipairs(self.activeFrameInfoList) do
-        if MouseIsOver(_G[info.frame]) then
+        if _G[info.frame]:IsMouseOver() then
             if i > 1 then
                 table.remove(self.activeFrameInfoList, i)
                 table.insert(self.activeFrameInfoList, 1, info)
