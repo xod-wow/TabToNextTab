@@ -307,11 +307,11 @@ function TabToNextTab:Initialize()
         end
     end
     self:SetAttribute("type", "click")
-    if WOW_PROJECT_ID == 1 then
-        self:RegisterForClicks("AnyUp", "AnyDown")
-    else
-        self:RegisterForClicks("AnyUp")
-    end
+    -- Hack forcing action on keydown irrespective of the value of
+    -- GetCVarBool('actionButtonUseKeyDown'). Gross.
+    self:SetAttribute("pressAndHoldAction", true)
+    self:SetAttribute("typerelease", "click")
+    self:RegisterForClicks("AnyDown")
     self:SetScript("PreClick", self.PreClick)
     self:SetScript("PostClick", self.PostClick)
     self:RegisterEvent("PLAYER_REGEN_DISABLED")
